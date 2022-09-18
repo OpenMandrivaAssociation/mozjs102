@@ -25,39 +25,45 @@ URL:		https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Rel
 Source0:        https://ftp.mozilla.org/pub/firefox/releases/%{version}esr/source/firefox-%{version}esr.source.tar.xz
 
 # Patches from Debian mozjs60, rebased for mozjs68:
-Patch01:	https://src.fedoraproject.org/rpms/mozjs78/raw/master/f/fix-soname.patch
-Patch02:	https://src.fedoraproject.org/rpms/mozjs78/raw/master/f/copy-headers.patch
-Patch03:	https://src.fedoraproject.org/rpms/mozjs78/raw/master/f/tests-increase-timeout.patch
-Patch09:	https://src.fedoraproject.org/rpms/mozjs78/raw/master/f/icu_sources_data.py-Decouple-from-Mozilla-build-system.patch
-Patch10:	https://src.fedoraproject.org/rpms/mozjs78/raw/master/f/icu_sources_data-Write-command-output-to-our-stderr.patch
+Patch01:	https://src.fedoraproject.org/rpms/mozjs102/raw/master/f/fix-soname.patch
+Patch02:	https://src.fedoraproject.org/rpms/mozjs102/raw/master/f/copy-headers.patch
+Patch03:	https://src.fedoraproject.org/rpms/mozjs102/raw/master/f/tests-increase-timeout.patch
+Patch09:	https://src.fedoraproject.org/rpms/mozjs102/raw/master/f/icu_sources_data.py-Decouple-from-Mozilla-build-system.patch
+Patch10:	https://src.fedoraproject.org/rpms/mozjs102/raw/master/f/icu_sources_data-Write-command-output-to-our-stderr.patch
 
-Patch11:        https://src.fedoraproject.org/rpms/mozjs91/blob/rawhide/f/remove-sloppy-m4-detection-from-bundled-autoconf.patch
+Patch11:        https://src.fedoraproject.org/rpms/mozjs102/blob/rawhide/f/remove-sloppy-m4-detection-from-bundled-autoconf.patch
  
 # Build fixes - https://hg.mozilla.org/mozilla-central/rev/ca36a6c4f8a4a0ddaa033fdbe20836d87bbfb873
-Patch12:	https://src.fedoraproject.org/rpms/mozjs78/raw/master/f/emitter.patch
- 
+Patch12:	https://src.fedoraproject.org/rpms/mozjs102/raw/master/f/emitter.patch
+
+Patch13: https://src.fedoraproject.org/rpms/mozjs102/blob/rawhide/f/tests-Use-native-TemporaryDirectory.patch
+
 # Build fixes
 Patch14:	https://src.fedoraproject.org/rpms/mozjs78/raw/master/f/init_patch.patch
+
 # TODO: Check with mozilla for cause of these fails and re-enable spidermonkey compile time checks if needed
 Patch15:	https://src.fedoraproject.org/rpms/mozjs78/raw/master/f/spidermonkey_checks_disable.patch
+
+Patch16:  https://src.fedoraproject.org/rpms/mozjs102/blob/rawhide/f/0001-Python-Build-Use-r-instead-of-rU-file-read-modes.patch
+
  
 # armv7 fixes
-Patch16:	https://src.fedoraproject.org/rpms/mozjs68/raw/master/f/rust_armv7.patch
-Patch17:	https://src.fedoraproject.org/rpms/mozjs78/raw/master/f/armv7_disable_WASM_EMULATE_ARM_UNALIGNED_FP_ACCESS.patch
+#Patch17:	https://src.fedoraproject.org/rpms/mozjs68/raw/master/f/rust_armv7.patch
+#Patch18:	https://src.fedoraproject.org/rpms/mozjs78/raw/master/f/armv7_disable_WASM_EMULATE_ARM_UNALIGNED_FP_ACCESS.patch
  
 # Patches from Fedora firefox package:
-Patch26:	https://src.fedoraproject.org/rpms/mozjs68/raw/master/f/build-icu-big-endian.patch
+#Patch26:	https://src.fedoraproject.org/rpms/mozjs68/raw/master/f/build-icu-big-endian.patch
  
 # Support Python 3 in js tests
 #Patch30:	https://src.fedoraproject.org/rpms/mozjs68/raw/master/f/jstests_python-3.patch
 
 # aarch64 fixes for -O2
-Patch40:	Save-x28-before-clobbering-it-in-the-regex-compiler.patch
-Patch41:	Save-and-restore-non-volatile-x28-on-ARM64-for-generated-unboxed-object-constructor.patch
+#Patch40:	Save-x28-before-clobbering-it-in-the-regex-compiler.patch
+#Patch41:	Save-and-restore-non-volatile-x28-on-ARM64-for-generated-unboxed-object-constructor.patch
 
 #Patch50:	firefox-60.2.2-add-riscv64.patch
 #Patch51:	mozjs-52.8.1-fix-crash-on-startup.patch
-Patch52:	mozjs-68-compile.patch
+#Patch52:	mozjs-68-compile.patch
 
 BuildRequires:	pkgconfig(icu-i18n)
 BuildRequires:	pkgconfig(nspr)
@@ -110,20 +116,22 @@ pushd ../..
 %patch10 -p1 -b .10~
 %patch11 -p1 -b .11~ 
 %patch12 -p1 -b .12~
+%patch13 -p1 -b .13~
 %patch14 -p1 -b .14~
 %patch15 -p1 -b .15~
+%patch16 -p1 -b .16~
  
 %ifarch %{arm}
 # Correct armv7hl rust triple seems to be armv7-unknown-linux-gnueabihf and not armv7-unknown-linux-gnueabi
-%patch16 -p1 -b .16~
+#patch17 -p1 -b .16~
 # Disable WASM_EMULATE_ARM_UNALIGNED_FP_ACCESS as it causes the compilation to fail
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1526653
-%patch17 -p1 -b .17~
+#patch18 -p1 -b .17~
 %endif
  
 # Patch for big endian platforms only
 %if 0%{?big_endian}
-%patch26 -p1 -b .26~
+#patch26 -p1 -b .26~
 %endif
  
 # Execute tests with Python 3
@@ -131,7 +139,7 @@ pushd ../..
 
 #patch50 -p1 -b .50~
 #%patch51 -p1 -b .51~
-%patch52 -p1 -b .52~
+#patch52 -p1 -b .52~
 popd
 
 # Remove zlib directory (to be sure using system version)

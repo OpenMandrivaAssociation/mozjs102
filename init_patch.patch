@@ -11,7 +11,7 @@ diff --git a/python/mozbuild/mozbuild/configure/__init__.py b/python/mozbuild/mo
 index f3167f6..c9e1132 100644
 --- a/python/mozbuild/mozbuild/configure/__init__.py
 +++ b/python/mozbuild/mozbuild/configure/__init__.py
-@@ -553,10 +553,7 @@ class ConfigureSandbox(dict):
+@@ -557,10 +557,7 @@ class ConfigureSandbox(dict):
          for arg in self._helper:
              without_value = arg.split("=", 1)[0]
              msg = "Unknown option: %s" % without_value
@@ -25,3 +25,4 @@ index f3167f6..c9e1132 100644
          for func, args in self._execution_queue:
 --
 2.31.1
+

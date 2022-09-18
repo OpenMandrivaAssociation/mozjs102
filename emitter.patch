@@ -9,10 +9,10 @@ Subject: [PATCH] Build: allow LOCAL_INCLUDES paths with topsrcdir or topobjdir
  2 files changed, 32 deletions(-)
 
 diff --git a/python/mozbuild/mozbuild/frontend/emitter.py b/python/mozbuild/mozbuild/frontend/emitter.py
-index 44b916e..f2e821d 100644
+index 0b7ccef..a3c7f2f 100644
 --- a/python/mozbuild/mozbuild/frontend/emitter.py
 +++ b/python/mozbuild/mozbuild/frontend/emitter.py
-@@ -1367,16 +1367,6 @@ class TreeMetadataEmitter(LoggingMixin):
+@@ -1365,16 +1365,6 @@ class TreeMetadataEmitter(LoggingMixin):
                          "(resolved to %s)" % (local_include, full_path),
                          context,
                      )
@@ -30,10 +30,10 @@ index 44b916e..f2e821d 100644
              local_includes.append(include_obj.path.full_path)
              yield include_obj
 diff --git a/python/mozbuild/mozbuild/test/frontend/test_emitter.py b/python/mozbuild/mozbuild/test/frontend/test_emitter.py
-index e53bc5e..c1b9d32 100644
+index 99507fc..821de22 100644
 --- a/python/mozbuild/mozbuild/test/frontend/test_emitter.py
 +++ b/python/mozbuild/mozbuild/test/frontend/test_emitter.py
-@@ -1098,28 +1098,6 @@ class TestEmitterBasic(unittest.TestCase):
+@@ -1076,28 +1076,6 @@ class TestEmitterBasic(unittest.TestCase):
 
          self.assertEqual(local_includes, expected)
 
@@ -63,4 +63,5 @@ index e53bc5e..c1b9d32 100644
          """Test that a filename can't be used in LOCAL_INCLUDES."""
          reader = self.reader("local_includes-filename")
 --
-2.31.1
+2.37.1
+
