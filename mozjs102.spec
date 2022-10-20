@@ -18,7 +18,7 @@
 
 Summary:	JavaScript interpreter and libraries
 Name:		mozjs102
-Version:	102.3.0
+Version:	102.4.0
 Release:	1
 License:	MPLv2.0 and BSD and GPLv2+ and GPLv3+ and LGPLv2.1 and LGPLv2.1+
 URL:		https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Releases/%{major}
@@ -69,7 +69,7 @@ BuildRequires:	pkgconfig(icu-i18n)
 BuildRequires:	pkgconfig(nspr)
 BuildRequires:	pkgconfig(libffi)
 BuildRequires:	pkgconfig(zlib)
-BuildRequires:	pkgconfig(python2)
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	readline-devel
 BuildRequires:	zip
 BuildRequires:	python
