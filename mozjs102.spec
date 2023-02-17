@@ -44,7 +44,7 @@ Patch14:	https://src.fedoraproject.org/rpms/mozjs78/raw/master/f/init_patch.patc
 # TODO: Check with mozilla for cause of these fails and re-enable spidermonkey compile time checks if needed
 Patch15:	https://src.fedoraproject.org/rpms/mozjs78/raw/master/f/spidermonkey_checks_disable.patch
 
-Patch16:  https://src.fedoraproject.org/rpms/mozjs102/blob/rawhide/f/0001-Python-Build-Use-r-instead-of-rU-file-read-modes.patch
+#Patch16:  https://src.fedoraproject.org/rpms/mozjs102/blob/rawhide/f/0001-Python-Build-Use-r-instead-of-rU-file-read-modes.patch
 
  
 # armv7 fixes
