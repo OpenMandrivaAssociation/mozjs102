@@ -118,7 +118,7 @@ pushd ../..
 %patch12 -p1 -b .12~
 %patch13 -p1 -b .13~
 %patch14 -p1 -b .14~
-%patch15 -p1 -b .15~
+#patch15 -p1 -b .15~
 %patch16 -p1 -b .16~
  
 %ifarch %{arm}
