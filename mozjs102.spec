@@ -77,6 +77,11 @@ BuildRequires:	rust
 BuildRequires:	cargo
 BuildRequires:	llvm-devel clang-devel
 
+%ifarch %{x86_64}
+# FIXME without this, configure barfs on znver1. Need to find a proper fix.
+BuildRequires:	libssh2.so.1()(64bit)
+%endif
+
 %description
 JavaScript is the Netscape-developed object scripting language used in millions
 of web pages and server applications worldwide. Netscape's JavaScript is a
