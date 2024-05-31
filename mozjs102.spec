@@ -18,7 +18,7 @@
 
 Summary:	JavaScript interpreter and libraries
 Name:		mozjs102
-Version:	102.15.0
+Version:	102.15.1
 Release:	1
 License:	MPLv2.0 and BSD and GPLv2+ and GPLv3+ and LGPLv2.1 and LGPLv2.1+
 URL:		https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Releases/%{major}
@@ -114,37 +114,37 @@ you will need to install %{name}-devel.
 pushd ../..
 %config_update
 
-%patch01 -p1 -b .01~
-%patch02 -p1 -b .02~
-%patch03 -p1 -b .03~
-%patch09 -p1 -b .09~
-%patch10 -p1 -b .10~
-%patch11 -p1 -b .11~ 
-%patch12 -p1 -b .12~
-%patch13 -p1 -b .13~
-%patch14 -p1 -b .14~
-%patch15 -p1 -b .15~
-#patch16 -p1 -b .16~
+%patch 01 -p1 -b .01~
+%patch 02 -p1 -b .02~
+%patch 03 -p1 -b .03~
+%patch 09 -p1 -b .09~
+%patch 10 -p1 -b .10~
+%patch 11 -p1 -b .11~
+%patch 12 -p1 -b .12~
+%patch 13 -p1 -b .13~
+%patch 14 -p1 -b .14~
+%patch 15 -p1 -b .15~
+#patch 16 -p1 -b .16~
  
 %ifarch %{arm}
 # Correct armv7hl rust triple seems to be armv7-unknown-linux-gnueabihf and not armv7-unknown-linux-gnueabi
-#patch17 -p1 -b .16~
+#patch 17 -p1 -b .16~
 # Disable WASM_EMULATE_ARM_UNALIGNED_FP_ACCESS as it causes the compilation to fail
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1526653
-#patch18 -p1 -b .17~
+#patch 18 -p1 -b .17~
 %endif
  
 # Patch for big endian platforms only
 %if 0%{?big_endian}
-#patch26 -p1 -b .26~
+#patch 26 -p1 -b .26~
 %endif
  
 # Execute tests with Python 3
-#patch30 -p1 -b .30~
+#patch 30 -p1 -b .30~
 
-#patch50 -p1 -b .50~
-#%patch51 -p1 -b .51~
-#patch52 -p1 -b .52~
+#patch 50 -p1 -b .50~
+#patch 51 -p1 -b .51~
+#patch 52 -p1 -b .52~
 popd
 
 # Remove zlib directory (to be sure using system version)
