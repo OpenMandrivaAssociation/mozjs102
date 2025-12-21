@@ -65,6 +65,11 @@ Patch15:	https://src.fedoraproject.org/rpms/mozjs78/raw/master/f/spidermonkey_ch
 #Patch51:	mozjs-52.8.1-fix-crash-on-startup.patch
 #Patch52:	mozjs-68-compile.patch
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(icu-i18n)
 BuildRequires:	pkgconfig(nspr)
 BuildRequires:	pkgconfig(libffi)
